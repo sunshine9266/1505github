@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	
+		<script type="text/javascript">
+			// 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）
+			var url = "http://127.0.0.1:80/jsonp.php";
+			var suming=function (data) {
+				alert('返回来的数据显示：' + data.name + ' 说' + data.age + ' 岁了。');
+			};
+			ajaxJSONP(url, suming);
+			//url参数就是我们要请求的地址
+			//callback是我们获取返回数据的回调函数
+			//我们在文件夹3中看到jquery版本的使用ajax请求跨域数据，但是这里你可以看到所有的代码中并没有ajax请求，仅仅是通过script标签来解决问题而已，所以本质上讲jsonp技术并不是通过ajax来实现的，只是为了解决ajax跨域的问题而已。
+			function ajaxJSONP(url, callback) {
+				// 创建script标签，设置其属性
+				var script = document.createElement('script');
+				script.setAttribute('src', url + '?callback=' + callback);
+				// 把script标签加入head，此时调用开始
+				document.getElementsByTagName('head')[0].appendChild(script);
+			}
+			//==引用哪个jsonp的插件
+			//执行的回调函数，这里是函数定义，服务端来调用这个函数来执行，可以往这个函数中传递数据
+		</script>
+	</body>
+
+</html>

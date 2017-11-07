@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+    <title>jsonp完整实现跨域</title>
+    <script type="text/javascript" src="">
+
+
+
+    // 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）
+    var url = "http://127.0.0.1:80/jsonp.php";
+
+    ajaxJSONP(url, huida);
+    //url参数就是我们要请求的地址
+    //callback是我们获取返回数据的回调函数
+    //我们在文件夹3中看到jquery版本的使用ajax请求跨域数据，但是这里你可以看到所有的代码中并没有ajax请求，仅仅是通过script标签来解决问题而已，所以本质上讲jsonp技术并不是通过ajax来实现的，只是为了解决ajax跨域的问题而已。
+    function ajaxJSONP(url, callback){
+	    // 创建script标签，设置其属性
+	    var script = document.createElement('script');
+	    script.setAttribute('src', url + '&callback=' + callback);
+
+	    // 把script标签加入head，此时调用开始
+	    document.getElementsByTagName('head')[0].appendChild(script);
+    }
+
+
+    //我们在not文件夹中看到，ajax请求不是同一个域名下的数据时，浏览器禁止访问了，那么如果非要请求这个地址的数据怎么办呢？
+
+    //执行的回调函数，这里是函数定义，服务端来调用这个函数来执行，可以往这个函数中传递数据
+    function huida(data){
+        alert('返回来的数据显示：' + data.name + ' 说' + data.age + ' 岁了。');
+    };
+
+    //这里是函数调用，调用时往里边传递数据，跨域就是把下面的函数调用放在服务器中动态生成这个函数调用，我们需要什么数据，服务器就往这里面传递什么数据，然后当前这个页面并通过script标签加载然后调用
+       huida({name:"高总",age:18});
+
+    </script>
+</head>
+<body>
+ 
+</body>
+</html>
