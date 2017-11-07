@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var ejs = require('ejs')
 
 module.exports = {
   entry: './src/main.js',
