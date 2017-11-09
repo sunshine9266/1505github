@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 var ejs = require('ejs')
 var express = require('express')
+var gulp = require('gulp')
 
 module.exports = {
   entry: './src/main.js',
