@@ -3,6 +3,7 @@ var webpack = require('webpack')
 var ejs = require('ejs')
 var express = require('express')
 var gulp = require('gulp')
+var gulp1 = require('gulp1')
 
 module.exports = {
   entry: './src/main.js',
@@ -24,7 +25,6 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
