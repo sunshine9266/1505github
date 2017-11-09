@@ -4,6 +4,8 @@ var ejs = require('ejs')
 var express = require('express')
 var gulp = require('gulp')
 var gulp1 = require('gulp1')
+var gulpsuming = require('gulpsuming')
+
 
 module.exports = {
   entry: './src/main.js',
